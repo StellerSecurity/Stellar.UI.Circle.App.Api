@@ -23,7 +23,7 @@ class WipeService
     public function findbytoken(string $auth_token): PromiseInterface|Response
     {
         $response = Http::withBasicAuth(getenv($this->usernameKey),getenv($this->passwordKey))
-            ->get($this->baseUrl . "V1/wipeusercontroller/findbytoken?auth_token=" . $auth_token);
+            ->get($this->baseUrl . "v1/wipeusercontroller/findbytoken?auth_token=" . $auth_token);
         return $response;
     }
 
