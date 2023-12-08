@@ -54,8 +54,14 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'stderr', 'daily', 'app-insights'],
             'ignore_exceptions' => false,
+        ],
+
+        // other channels...
+        'app-insights' => [
+            'driver' => 'custom',
+            'via' => Mondago\ApplicationInsights\Logging\CreateApplicationInsightsLogger::class,
         ],
 
         'single' => [
