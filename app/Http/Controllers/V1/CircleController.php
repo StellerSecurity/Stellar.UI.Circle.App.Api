@@ -4,6 +4,7 @@ namespace App\Http\Controllers\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\WipeService;
+use App\WipedBy;
 use App\WipeStatus;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,8 @@ class CircleController extends Controller
 
         $patch = $this->wipeService->patch([
             'id' => $wipe->id,
-            'status' => WipeStatus::WIPED
+            'status' => WipeStatus::WIPED,
+            'wiped_by' => WipedBy::CIRCLE
         ])->object();
 
         return response()->json($patch);
