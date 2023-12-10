@@ -38,7 +38,7 @@ class CircleController extends Controller
         $patch = $this->wipeService->patch([
             'id' => $wipe->id,
             'status' => WipeStatus::WIPED,
-            'wiped_by' => WipedBy::CIRCLE
+            'wiped_by' => WipedBy::CIRCLE->value
         ])->object();
 
         return response()->json($patch);
