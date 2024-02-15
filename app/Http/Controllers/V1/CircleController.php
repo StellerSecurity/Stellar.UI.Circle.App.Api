@@ -29,9 +29,9 @@ class CircleController extends Controller
             return response()->json(['response_code' => 400, 'message' => 'No Token Provided.']);
         }
 
-        $wipe = $this->wipeService->findbytoken($request->input('wipe_token'))->object();
+        $wipe = $this->wipeService->findbytoken($wipe_token)->object();
 
-        if($wipe === null) {
+        if(!isset($wipe->id)) {
             return response()->json(['response_code' => 400, 'message' => 'Token Not Found']);
         }
 
