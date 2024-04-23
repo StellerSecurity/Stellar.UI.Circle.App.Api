@@ -22,14 +22,14 @@ class WipeService
      */
     public function findbytoken(string $auth_token): PromiseInterface|Response
     {
-        $response = Http::withBasicAuth(getenv($this->usernameKey),getenv($this->passwordKey))
+        $response = Http::withBasicAuth(getenv($this->usernameKey),getenv($this->passwordKey))->retry(3, 100)
             ->get($this->baseUrl . "v1/wipeusercontroller/findbytoken?auth_token=" . $auth_token);
         return $response;
     }
 
     public function patch(array $data): PromiseInterface|Response
     {
-        $response = Http::withBasicAuth(getenv($this->usernameKey),getenv($this->passwordKey))
+        $response = Http::withBasicAuth(getenv($this->usernameKey),getenv($this->passwordKey))->retry(3, 100)
             ->patch($this->baseUrl . "v1/wipeusercontroller/patch", $data);
         return $response;
     }
